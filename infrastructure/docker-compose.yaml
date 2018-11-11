@@ -4,7 +4,9 @@ services:
     build: ../frontend
     ports:
       - 4280:3000
+    restart: always
   backend:
     build: ../backend
     ports:
       - 4250:8480
+    restart: always
