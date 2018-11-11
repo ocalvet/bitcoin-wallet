@@ -14,8 +14,13 @@ var btcWallet = newWallet()
 
 func main() {
 	mux := http.NewServeMux()
+	mux.HandleFunc("/pulse", healthCheck)
 	mux.HandleFunc("/api/generatekey", generatePrivateKey)
 	log.Fatal(http.ListenAndServe(":8480", mux))
+}
+func healthCheck(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(`{ "status": "beat" }`))
 }
 
 func generatePrivateKey(w http.ResponseWriter, r *http.Request) {
