@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import CreateTransactionDialog from './CreateTransactionDialog';
 
 const styles = theme => ({
   card: {
@@ -26,25 +27,43 @@ const styles = theme => ({
   },
 });
 
-function Wallet({ classes, wallet }) {
-  return (
-    <Card className={classes.card}>
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          {wallet.title}
-        </Typography>
-        <Typography component="p">
-          {wallet.description}
-        </Typography>
-        <Typography component="p">
-          Private Key: {wallet.key}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Add Transaction</Button>
-      </CardActions>
-    </Card>
-  );
+class Wallet extends React.Component {
+  state = {
+    openTransactionDialog: false
+  }
+
+  closeTransactionDialog = () => {
+    console.log('Closing dialog');
+    this.setState({ openTransactionDialog: false });
+  }
+
+  openTransactionDialog = () => {
+    console.log('Opening transactions dialog');
+    this.setState({ openTransactionDialog: true });
+  }
+
+  render() {
+    const { classes, wallet } = this.props;
+    return (
+      <Card className={classes.card}>
+        <CardContent>
+          <Typography className={classes.title} color="textSecondary" gutterBottom>
+            {wallet.title}
+          </Typography>
+          <Typography component="p">
+            {wallet.description}
+          </Typography>
+          <Typography component="p">
+            Private Key: {wallet.key}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small" onClick={this.openTransactionDialog}>Add Transaction</Button>
+        </CardActions>
+        <CreateTransactionDialog open={this.state.openTransactionDialog} handleClose={this.closeTransactionDialog} />
+      </Card>
+    );
+  }
 }
 
 Wallet.propTypes = {
