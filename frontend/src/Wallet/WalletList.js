@@ -4,7 +4,7 @@ import Wallet from './Wallet';
 export default ({ wallets }) => {
     return (
         <div>
-            {wallets.map(wallet => <Wallet wallet={wallet} />)}
+            {wallets.map((wallet, idx) => <Wallet key={idx} wallet={wallet} />)}
         </div>
     )
 }
