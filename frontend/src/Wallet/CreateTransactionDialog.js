@@ -27,6 +27,13 @@ const CreateTransactionDialog = ({ open, handleClose }) => {
               type="text"
               fullWidth
             />
+            <TextField
+              margin="dense"
+              id="name"
+              label="Amount"
+              type="number"
+              fullWidth
+            />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">

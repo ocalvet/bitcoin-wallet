@@ -33,12 +33,12 @@ class Wallet extends React.Component {
   }
 
   closeTransactionDialog = () => {
-    console.log('Closing dialog');
+    // console.log('Closing dialog');
     this.setState({ openTransactionDialog: false });
   }
 
   openTransactionDialog = () => {
-    console.log('Opening transactions dialog');
+    // console.log('Opening transactions dialog');
     this.setState({ openTransactionDialog: true });
   }
 
