@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import { withStyles, Button } from '@material-ui/core';
 import WalletList from './Wallet/WalletList';
 
-// const wallets = [{ 
-//   title: 'Public',
-//   description: 'A wallet to interface publicly' 
-// }, { 
-//   title: 'Private',
-//   description: 'A wallet to keep coins but not to be use externally'
-// }];
-
 const styles = theme => ({
   root: {
     padding: theme.spacing.unit * 2
@@ -21,7 +13,7 @@ class App extends Component {
     wallets: []
   }
   onGenerateAddress = async () => {
-    const response = await fetch(`http://localhost:8480/api/generateKey`);
+    const response = await fetch(`http://localhost:8480/api/generatekey`);
     const wallet = response.text();
     console.log(wallet);
     this.setState({
