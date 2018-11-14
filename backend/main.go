@@ -1,13 +1,10 @@
 package main
 
 import (
-	"crypto/ecdsa"
-	"crypto/elliptic"
-	"crypto/rand"
-	"encoding/hex"
-	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/btcsuite/btcd/btcec"
 )
 
 var btcWallet = newWallet()
@@ -40,19 +37,9 @@ func newWallet() *wallet {
 
 // GeneratePrivateKey generates a private key
 func (w *wallet) GeneratePrivateKey() (string, error) {
-	privateKey, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
-	log.Printf("Length: %v", privateKey.D.BitLen())
-	src := privateKey.D.Bytes()
-
-	dst := make([]byte, hex.DecodedLen(privateKey.D.BitLen()))
-	n, err := hex.Decode(dst, src)
+	key, err := btcec.NewPrivateKey(btcec.S256())
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Printf("%s\n", dst[:n])
-	if err != nil {
-		return "", err
-	}
-	return string(n), nil
+	return key.D.String(), nil
 }
