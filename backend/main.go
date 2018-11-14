@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -41,5 +42,5 @@ func (w *wallet) GeneratePrivateKey() (string, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return key.D.String(), nil
+	return fmt.Sprintf("%x", key.D), nil
 }
