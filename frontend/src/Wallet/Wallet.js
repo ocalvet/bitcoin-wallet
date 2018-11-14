@@ -25,6 +25,9 @@ function Wallet({ classes, wallet }) {
         <Typography component="p">
           {wallet.description}
         </Typography>
+        <Typography component="p">
+          Key: {wallet.key}
+        </Typography>
       </Paper>
     </div>
   );
