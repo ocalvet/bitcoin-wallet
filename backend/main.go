@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/btcsuite/btcd/btcec"
+	"github.com/rs/cors"
 )
 
 var btcWallet = newWallet()
@@ -14,7 +15,8 @@ func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/pulse", healthCheck)
 	mux.HandleFunc("/api/generatekey", generatePrivateKey)
-	log.Fatal(http.ListenAndServe(":8480", mux))
+	handler := cors.Default().Handler(mux)
+	log.Fatal(http.ListenAndServe(":8480", handler))
 }
 func healthCheck(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
@@ -22,6 +24,7 @@ func healthCheck(w http.ResponseWriter, r *http.Request) {
 }
 
 func generatePrivateKey(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
 	key, _ := btcWallet.GeneratePrivateKey()
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte(key))
@@ -34,6 +37,10 @@ type wallet struct {
 
 func newWallet() *wallet {
 	return &wallet{}
+}
+
+func enableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 }
 
 // GeneratePrivateKey generates a private key
