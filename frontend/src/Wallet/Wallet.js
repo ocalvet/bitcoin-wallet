@@ -31,7 +31,15 @@ const styles = theme => ({
 class Wallet extends React.Component {
   state = {
     openTransactionDialog: false,
-    transactions: []
+    transactions: [{
+      id: 'abc1',
+      to: 'adskas203193812903210312lk3j213091203',
+      amount: 0.00002
+    },{
+      id: 'abc2',
+      to: 'opkoi123213pkp321o213p2k13o213k12op3',
+      amount: 1.23098
+    }]
   }
 
   closeTransactionDialog = () => {
