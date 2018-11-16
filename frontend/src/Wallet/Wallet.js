@@ -47,6 +47,11 @@ class Wallet extends React.Component {
     this.setState({ openTransactionDialog: false });
   }
 
+  createTransaction = (transaction) => {
+    console.log('Creating transaction', transaction)
+    this.setState({ openTransactionDialog: false });
+  }
+
   openTransactionDialog = () => {
     // console.log('Opening transactions dialog');
     this.setState({ openTransactionDialog: true });
@@ -72,7 +77,7 @@ class Wallet extends React.Component {
         <CardActions>
           <Button size="small" onClick={this.openTransactionDialog}>Add Transaction</Button>
         </CardActions>
-        <CreateTransactionDialog open={this.state.openTransactionDialog} handleClose={this.closeTransactionDialog} />
+        <CreateTransactionDialog open={this.state.openTransactionDialog} onCancel={this.closeTransactionDialog} onCreate={this.createTransaction} />
       </Card>
     );
   }

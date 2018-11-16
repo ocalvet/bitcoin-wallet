@@ -7,11 +7,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const CreateTransactionDialog = ({ open, handleClose }) => {
+const CreateTransactionDialog = ({ open, onCancel, onCreate }) => {
     return (
         <Dialog
           open={open}
-          onClose={handleClose}
+          onClose={onCancel}
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">Create Transaction</DialogTitle>
@@ -36,10 +36,10 @@ const CreateTransactionDialog = ({ open, handleClose }) => {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={onCancel} color="primary">
               Cancel
             </Button>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={onCreate} color="primary">
               Create
             </Button>
           </DialogActions>
