@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CreateTransactionDialog from './CreateTransactionDialog';
+import TransactionList from './TransactionList';
 
 const styles = theme => ({
   card: {
@@ -29,7 +30,8 @@ const styles = theme => ({
 
 class Wallet extends React.Component {
   state = {
-    openTransactionDialog: false
+    openTransactionDialog: false,
+    transactions: []
   }
 
   closeTransactionDialog = () => {
@@ -44,6 +46,7 @@ class Wallet extends React.Component {
 
   render() {
     const { classes, wallet } = this.props;
+    const { transactions } = this.state;
     return (
       <Card className={classes.card}>
         <CardContent>
@@ -56,6 +59,7 @@ class Wallet extends React.Component {
           <Typography component="p">
             Private Key: {wallet.key}
           </Typography>
+          <TransactionList transactions={transactions} />
         </CardContent>
         <CardActions>
           <Button size="small" onClick={this.openTransactionDialog}>Add Transaction</Button>
