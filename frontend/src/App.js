@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className={classes.root}>
         <h1>Bitcoin Wallet - Testing</h1>
-        <Button onClick={this.onGenerateAddress}>Generate</Button>
+        <Button variant="contained" onClick={this.onGenerateAddress}>Generate</Button>
         <WalletList wallets={this.state.wallets} />
       </div>
     );
