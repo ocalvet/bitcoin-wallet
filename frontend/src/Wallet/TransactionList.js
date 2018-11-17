@@ -6,25 +6,19 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
-  root: {
+  table: {
+    minWidth: 700,
     width: '100%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-  },
-  table: {
-    minWidth: 700,
   },
 });
 
 function TransactionList(props) {
   const { classes, transactions } = props;
-
-  return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
+  return transactions && transactions.length > 0 ? <Table className={classes.table}>
         <TableHead>
           <TableRow>
             <TableCell>To</TableCell>
@@ -32,9 +26,9 @@ function TransactionList(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {transactions.map(row => {
+          {transactions.map((row, idx) => {
             return (
-              <TableRow key={row.id}>
+              <TableRow key={idx}>
                 <TableCell component="th" scope="row">
                   {row.to}
                 </TableCell>
@@ -43,9 +37,7 @@ function TransactionList(props) {
             );
           })}
         </TableBody>
-      </Table>
-    </Paper>
-  );
+      </Table> : null;
 }
 
 TransactionList.propTypes = {

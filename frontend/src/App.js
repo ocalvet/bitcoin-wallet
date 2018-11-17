@@ -15,7 +15,6 @@ class App extends Component {
   onGenerateAddress = async () => {
     const response = await fetch(`http://localhost:8480/api/generatekey`);
     const wallet = await response.text();
-    console.log(wallet);
     this.setState({
       wallets: [...this.state.wallets, { 
         title: `Wallet ${this.state.wallets.length + 1}`,

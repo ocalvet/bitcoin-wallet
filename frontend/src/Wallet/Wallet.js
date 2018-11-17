@@ -31,29 +31,18 @@ const styles = theme => ({
 class Wallet extends React.Component {
   state = {
     openTransactionDialog: false,
-    transactions: [{
-      id: 'abc1',
-      to: 'adskas203193812903210312lk3j213091203',
-      amount: 0.00002
-    },{
-      id: 'abc2',
-      to: 'opkoi123213pkp321o213p2k13o213k12op3',
-      amount: 1.23098
-    }]
+    transactions: []
   }
 
   closeTransactionDialog = () => {
-    // console.log('Closing dialog');
     this.setState({ openTransactionDialog: false });
   }
 
   createTransaction = (transaction) => {
-    console.log('Creating transaction', transaction)
-    this.setState({ openTransactionDialog: false });
+    this.setState({ openTransactionDialog: false, transactions: [...this.state.transactions, transaction] });
   }
 
   openTransactionDialog = () => {
-    // console.log('Opening transactions dialog');
     this.setState({ openTransactionDialog: true });
   }
 
@@ -75,7 +64,7 @@ class Wallet extends React.Component {
           <TransactionList transactions={transactions} />
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={this.openTransactionDialog}>Add Transaction</Button>
+          <Button variant="contained" size="small" onClick={this.openTransactionDialog}>Add Transaction</Button>
         </CardActions>
         <CreateTransactionDialog open={this.state.openTransactionDialog} onCancel={this.closeTransactionDialog} onCreate={this.createTransaction} />
       </Card>
