@@ -39,7 +39,7 @@ class Wallet extends React.Component {
   }
 
   createTransaction = (transaction) => {
-    this.setState({ openTransactionDialog: false, transactions: [...this.state.transactions, transaction] });
+    this.setState({ openTransactionDialog: false, transactions: [...this.state.transactions, { ...transaction, createdAt: new Date() }] });
   }
 
   openTransactionDialog = () => {

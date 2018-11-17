@@ -9,8 +9,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 class CreateTransactionDialog extends React.Component {
   state = {
-    to: 'Ovi',
-    amount: 1.232323
+    to: '',
+    amount: 0
   };
 
   handleChange = property => (event) => {
