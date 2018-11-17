@@ -34,7 +34,7 @@ function TransactionList(props) {
                   {row.to}
                 </TableCell>
                 <TableCell numeric>{row.amount}</TableCell>
-                <TableCell>{row.createdAt.toLocaleString()}</TableCell>
+                <TableCell>{row.createdAt.toLocaleDateString()}</TableCell>
               </TableRow>
             );
           })}
