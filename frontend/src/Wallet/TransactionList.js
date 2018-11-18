@@ -33,7 +33,7 @@ function TransactionList(props) {
                 <TableCell component="th" scope="row">
                   {row.to}
                 </TableCell>
-                <TableCell numeric>{row.amount}</TableCell>
+                <TableCell numeric>{row.amount.toFixed(2)}</TableCell>
                 <TableCell>{row.createdAt.toLocaleDateString()}</TableCell>
               </TableRow>
             );
