@@ -39,7 +39,13 @@ class _WalletsScreen extends State<WalletsScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed:  () async {
+          Wallet newWallet = await createWallet('$nextIdx Wallet');
+          this.setState(() {
+            wallets.add(newWallet);
+            nextIdx++;
+          });
+        },
         tooltip: 'Not sure yet',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
