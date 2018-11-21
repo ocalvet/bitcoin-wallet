@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 class WalletsScreen extends StatefulWidget {
@@ -12,13 +11,12 @@ class WalletsScreen extends StatefulWidget {
 class _WalletsScreen extends State<WalletsScreen> {
   int nextIdx = 3;
   List<Wallet> wallets = [
-    Wallet(name: 'Wallet 1'),
-    Wallet(name: 'Wallet 2'),
+    Wallet(name: 'Wallet 1', walletId: '123'),
+    Wallet(name: 'Wallet 2', walletId: 'abc'),
   ];
-  Future<Wallet> createWallet(String name) {
-    return Future.delayed(Duration(seconds: 1), () {
-      return Wallet(name: name, walletId: '123abc321cba');
-    });
+  createWallet(String name) async {
+    http.Response resp = await http.get('http://localhost:8480/api/generatekey');
+    return Wallet(name: name, walletId: resp.body);
   }
 
   @override
