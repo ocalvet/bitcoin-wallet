@@ -26,13 +26,14 @@ class _WalletsScreen extends State<WalletsScreen> {
         title: Text('Wallet Home Page'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
+          padding: EdgeInsets.all(15),
           children: wallets.map((w) {
-              return Text(
-              w.name,
-              style: Theme.of(context).textTheme.display1,
-            );
+              return ListTile(
+                leading: Icon(Icons.enhanced_encryption),
+                title: Text(w.name),
+                subtitle: Text(w.walletId),
+              );
             }).toList(),
         ),
       ),
