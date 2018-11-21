@@ -1,3 +1,4 @@
+import 'package:btcwallet/wallet_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -10,10 +11,7 @@ class WalletsScreen extends StatefulWidget {
 
 class _WalletsScreen extends State<WalletsScreen> {
   int nextIdx = 3;
-  List<Wallet> wallets = [
-    Wallet(name: 'Wallet 1', walletId: '123'),
-    Wallet(name: 'Wallet 2', walletId: 'abc'),
-  ];
+  List<Wallet> wallets = [];
   createWallet(String name) async {
     http.Response resp = await http.get('http://localhost:8480/api/generatekey');
     return Wallet(name: name, walletId: resp.body);
@@ -23,7 +21,7 @@ class _WalletsScreen extends State<WalletsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Wallet Home Page'),
+        title: Text('Wallets'),
       ),
       body: Center(
         child: ListView(
@@ -50,10 +48,4 @@ class _WalletsScreen extends State<WalletsScreen> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-}
-
-class Wallet {
-  Wallet({this.name, this.walletId});
-  final String name;
-  final String walletId;
 }
